@@ -1,0 +1,85 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Windows App SDK / WinUI
+*.appx
+*.msix
+*.msixbundle
+*.appxbundle
+*.appxupload
+
+# Build output
+publish/
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.idb
+*.ipdb
+
+# Installer output
+Installer/*.exe
+
+# Windows files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Test results
+TestResults/
+[Tt]est[Rr]esults/
+*.trx
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# User-specific settings (keep appsettings.json as it has placeholders)
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*~

@@ -1,0 +1,107 @@
+<Page
+    x:Class="M365Manager.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:M365Manager.Views">
+
+    <Page.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVis" />
+    </Page.Resources>
+
+    <ScrollViewer Padding="40,32">
+        <StackPanel MaxWidth="{StaticResource ContentMaxWidth}">
+
+            <TextBlock Text="Settings"
+                       Style="{StaticResource PageHeaderStyle}" />
+
+            <!-- Azure App Registration -->
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Azure App Registration"
+                               Style="{StaticResource SectionHeaderStyle}" Margin="0" />
+                    <TextBlock Text="Enter the details from your Azure App Registration. See the README guide for step-by-step setup instructions."
+                               Opacity="0.7"
+                               TextWrapping="Wrap" />
+
+                    <TextBox Header="Client ID (Application ID)"
+                             Text="{x:Bind ViewModel.ClientId, Mode=TwoWay}"
+                             PlaceholderText="e.g. 12345678-abcd-1234-abcd-123456789abc"
+                             MinWidth="500" />
+
+                    <TextBox Header="Tenant ID (Directory ID)"
+                             Text="{x:Bind ViewModel.TenantId, Mode=TwoWay}"
+                             PlaceholderText="e.g. 12345678-abcd-1234-abcd-123456789abc"
+                             MinWidth="500" />
+
+                    <TextBox Header="Redirect URI"
+                             Text="{x:Bind ViewModel.RedirectUri, Mode=TwoWay}"
+                             PlaceholderText="http://localhost"
+                             MinWidth="500" />
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button Content="Save Settings"
+                                Style="{StaticResource AccentButtonStyle}"
+                                Padding="16,8"
+                                Click="SaveSettings_Click" />
+                        <ProgressRing IsActive="{x:Bind ViewModel.IsSaving, Mode=OneWay}"
+                                      Width="20" Height="20"
+                                      Visibility="{x:Bind ViewModel.IsSaving, Mode=OneWay}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Test Connection -->
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Test Connection"
+                               Style="{StaticResource SectionHeaderStyle}" Margin="0" />
+                    <TextBlock Text="Verify that your settings are correct and you can connect to Microsoft 365."
+                               Opacity="0.7"
+                               TextWrapping="Wrap" />
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button Content="Test Connection"
+                                Padding="16,8"
+                                Click="TestConnection_Click" />
+                        <ProgressRing IsActive="{x:Bind ViewModel.IsTesting, Mode=OneWay}"
+                                      Width="20" Height="20"
+                                      Visibility="{x:Bind ViewModel.IsTesting, Mode=OneWay}" />
+                    </StackPanel>
+
+                    <InfoBar x:Name="TestResultBar"
+                             Title="{x:Bind ViewModel.TestSuccess, Mode=OneWay, Converter={StaticResource TestResultTitle}}"
+                             Message="{x:Bind ViewModel.TestResult, Mode=OneWay}"
+                             Severity="{x:Bind ViewModel.TestSuccess, Mode=OneWay, Converter={StaticResource TestResultSeverity}}"
+                             IsOpen="{x:Bind ViewModel.HasTestResult, Mode=OneWay}"
+                             IsClosable="True" />
+                </StackPanel>
+            </Border>
+
+            <!-- About -->
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="About"
+                               Style="{StaticResource SectionHeaderStyle}" Margin="0" />
+
+                    <TextBlock>
+                        <Run Text="M365 Manager v" />
+                        <Run Text="{x:Bind ViewModel.AppVersion, Mode=OneWay}" />
+                    </TextBlock>
+
+                    <TextBlock Text="A simplified Microsoft 365 user administration tool designed for office managers."
+                               Opacity="0.7"
+                               TextWrapping="Wrap" />
+
+                    <TextBlock Text="Developed by 1ronman101"
+                               FontWeight="SemiBold"
+                               Margin="0,8,0,0" />
+
+                    <HyperlinkButton Content="View Setup Guide (README)"
+                                     NavigateUri="https://github.com/1ronman101/M365Manager#readme" />
+                </StackPanel>
+            </Border>
+
+            <Border Height="40" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
